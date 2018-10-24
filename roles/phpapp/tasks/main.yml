@@ -1,0 +1,6 @@
+---
+- name: create folder for phpapp
+  file: name=/srv/app.syberiayoubear.devops.srwx.net/phpapp state=directory
+
+- name: update phpapp
+  template: src=app.php dest=/srv/app.syberiayoubear.devops.srwx.net/phpapp/app.php

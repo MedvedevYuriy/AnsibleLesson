@@ -1,0 +1,14 @@
+server {
+  listen 80;
+
+  server_name syberiayoubear.devops.srwx.net;
+
+  location /.well-known/ {
+    root /var/www/html;
+  }
+
+  location / {
+    return 200 "OK";
+  } 
+}
+

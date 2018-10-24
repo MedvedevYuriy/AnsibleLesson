@@ -1,0 +1,12 @@
+---
+- name: activate maingo.service
+  systemd: daemon_reload=yes
+
+- name: enable goapp
+  systemd: name=maingo enabled=yes 
+
+- name: start goapp
+  systemd: name=maingo state=restarted
+
+- name: made binfile
+  shell: go build /srv/gitgoapp/main.go && mv ~/main /srv/app.syberiayoubear.devops.srwx.net/goapp/main

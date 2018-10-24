@@ -1,0 +1,12 @@
+[Unit]
+Description=goapp
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/srv/app.syberiayoubear.devops.srwx.net/goapp/main
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

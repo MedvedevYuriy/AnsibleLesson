@@ -1,0 +1,14 @@
+---
+- name: update actual site.conf
+  template: src=prod-syberiayoubear.devops.srwx.net.j2 dest=/etc/nginx/sites-enabled/syberiayoubear.devops.srwx.net.conf owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: create directory for app
+  file: name=/srv/app.syberiayoubear.devops.srwx.net state=directory
+
+- name: update index.html
+  template: src=index.html dest=/srv/app.syberiayoubear.devops.srwx.net/index.html owner=root group=root mode=0644
+
+- name: update app.js
+  template: src=app.js dest=/srv/app.syberiayoubear.devops.srwx.net/app.js owner=root group=root mode=0644
+  notify: restart nginx

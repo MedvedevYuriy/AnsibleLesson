@@ -1,0 +1,42 @@
+server {
+  listen 80;
+
+  server_name syberiayoubear.devops.srwx.net;
+
+  location /.well-known/ {
+    root /var/www/html;
+  }
+
+
+  location / {
+    return 301 https://syberiayoubear.devops.srwx.net;
+  }
+}
+
+server {
+  listen 443 ssl;
+
+  server_name syberiayoubear.devops.srwx.net;
+
+  ssl_certificate /etc/letsencrypt/live/syberiayoubear.devops.srwx.net/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/syberiayoubear.devops.srwx.net/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/syberiayoubear.devops.srwx.net/chain.pem;
+
+  ssl_stapling on;
+  ssl_stapling_verify on;
+
+  location / {
+   root /srv/app.syberiayoubear.devops.srwx.net;
+   index index.html;
+  }
+
+  location /api/sum/ {
+   proxy_pass http://localhost:8080/sum/;
+  }
+
+  location /api/diff/ {
+   include fastcgi_params;
+   fastcgi_param SCRIPT_FILENAME /srv/app.syberiayoubear.devops.srwx.net/phpapp/app.php;
+   fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+  }
+}

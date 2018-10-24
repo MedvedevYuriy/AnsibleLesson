@@ -1,0 +1,26 @@
+---
+- name: install git
+  apt: name=git state=latest
+
+- name: install golang
+  apt: name=golang state=latest
+
+- name: create folder for goapp
+  file: name=/srv/app.syberiayoubear.devops.srwx.net/goapp state=directory
+
+- name: create folder for goapp/git
+  file: name=/srv/gitgoapp state=directory
+  notify: made binfile
+
+- name: download goapp
+  git:
+          repo: https://github.com/vozerov/goapp.git
+          version: api
+          dest: /srv/gitgoapp
+
+- name: update maingo.service
+  template: src=maingo.service dest=/etc/systemd/system/maingo.service
+  notify: 
+    - activate maingo.service
+    - enable goapp
+    - start goapp

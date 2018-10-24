@@ -1,0 +1,2 @@
+[web]
+46.21.249.146 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=hySF39tCfXbrxs
