@@ -10,13 +10,17 @@
 
 - name: create folder for goapp/git
   file: name=/srv/gitgoapp state=directory
-  notify: made binfile
 
 - name: download goapp
   git:
           repo: https://github.com/vozerov/goapp.git
           version: api
           dest: /srv/gitgoapp
+  register: madefile
+
+- name: made binfile
+  shell: go build /srv/gitgoapp/main.go && mv ~/main /srv/app.syberiayoubear.devops.srwx.net/goapp/main
+  when: madefile.changed
 
 - name: update maingo.service
   template: src=maingo.service dest=/etc/systemd/system/maingo.service

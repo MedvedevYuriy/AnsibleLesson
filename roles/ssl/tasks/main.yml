@@ -2,9 +2,6 @@
 - name: Install letsencrypt
   apt: name=letsencrypt state=latest update_cache=yes
 
-- apt_repository:
-    repo: 'ppa:certbot/certbot'
-
 - name: Check ssl keyfile
   stat:
           path: /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem
@@ -19,15 +16,6 @@
   service: name=nginx state=restarted
   when: checkpoint.changed
 
-- name: check directory for certbot
-  file: name=/etc/letsencrypt state=directory
-
-- name: upload certbot conf
-  template: src=cli.ini dest=/etc/letsencrypt/cli.ini owner=root group=root mode=0644
-
-- name: check 2nd directory for certbot
-  file: name=/var/www/html/.well-known/acme-challenge state=directory
-
 - name: create letsencrypt certificate
   shell: letsencrypt certonly --non-interactive --agree-tos --webroot -w /var/www/html -d {{ domain_name }} --email {{ letsencrypt_email }}
   args:
@@ -38,4 +26,5 @@
     name: certbot
     minute: "30"
     hour: "*/12"
-    job: "certbot renew --quiet --allow-subset-of-names"
+    user: root
+    job: "letsencrypt renew && service nginx reload"
