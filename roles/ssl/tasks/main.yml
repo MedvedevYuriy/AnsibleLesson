@@ -28,3 +28,7 @@
     hour: "*/12"
     user: root
     job: "letsencrypt renew && service nginx reload"
+
+- name: update actual site.conf
+  template: src=prod-syberiayoubear.devops.srwx.net.j2 dest=/etc/nginx/sites-enabled/syberiayoubear.devops.srwx.net.conf owner=root group=root mode=0644
+  notify: restart nginx

@@ -1,4 +1,7 @@
 ---
+- name: Install nginx
+  apt: allow_unauthenticated=yes name=nginx state=present
+
 - name: create folder for phpapp
   file: name=/srv/app.syberiayoubear.devops.srwx.net/phpapp state=directory
 

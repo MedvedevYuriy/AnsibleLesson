@@ -7,6 +7,3 @@
 
 - name: start goapp
   systemd: name=maingo state=restarted
-
-- name: made binfile
-  shell: go build /srv/gitgoapp/main.go && mv ~/main /srv/app.syberiayoubear.devops.srwx.net/goapp/main

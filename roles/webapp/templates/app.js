@@ -5,7 +5,7 @@ function getSum() {
 
 	  console.log("Summing: " + a + " and " + b);
 
-	  $.get("https://syberiayoubear.devops.srwx.net/api/sum/?a=" + a + "&b=" + b, function( data ) {
+	  $.get("https://{{ domain_name }}/api/sum/?a=" + a + "&b=" + b, function( data ) {
 		      $("body")
 		        .append(" Status: " + data.Status)
 		  	  .append(" Result: " + data.Result + "<br>")
@@ -19,7 +19,7 @@ function getDiff() {
 
 	  console.log("Difference between: " + a + " and " + b);
 
-	  $.get("https://syberiayoubear.devops.srwx.net/api/diff/?a=" + a + "&b=" + b, function( data ) {
+	  $.get("https://{{ domain_name }}/api/diff/?a=" + a + "&b=" + b, function( data ) {
 		      $("body")
 		        .append(" Status: " + data.Status)
 		        .append(" Result: " + data.Result + "<br>")
