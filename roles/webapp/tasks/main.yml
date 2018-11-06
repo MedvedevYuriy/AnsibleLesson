@@ -1,6 +1,6 @@
 ---
 - name: update actual site.conf
-  template: src=prod-syberiayoubear.devops.srwx.net.j2 dest=/etc/nginx/sites-enabled/syberiayoubear.devops.srwx.net.conf owner=root group=root mode=0644
+  template: src=prod-syberiayoubear.devops.srwx.net.j2 dest=/etc/nginx/sites-enabled/{{ domain_name }}.conf owner=root group=root mode=0644
   notify: restart nginx
 
 - name: create directory for app
