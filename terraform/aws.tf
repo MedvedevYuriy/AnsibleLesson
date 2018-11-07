@@ -21,7 +21,7 @@ variable "ssh_key_path" {
 }
 
 variable "ports" {
-  default = ["80", "443", "8080", "8443"]
+  default = ["22", "80", "443", "8080"]
 }
 
 provider "aws" {
