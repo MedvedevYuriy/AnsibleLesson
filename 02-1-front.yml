@@ -1,0 +1,9 @@
+---
+- hosts: web
+  vars:
+          - letsencrypt_email: syberiayoubear@gmail.com
+          - domain_name: front.syb.devops.srwx.net
+  roles:
+          - nginx
+          - ssl
+          - webapp
