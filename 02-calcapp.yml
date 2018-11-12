@@ -1,11 +1,10 @@
 ---
-- hosts: web
+- hosts: all
   vars:
           - letsencrypt_email: syberiayoubear@gmail.com
           - domain_name: syberiayoubear.devops.srwx.net
   roles:
           - nginx
-          - ssl
           - webapp
           - goapp
           - phpapp

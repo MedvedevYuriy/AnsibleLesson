@@ -1,8 +1,0 @@
----
-- hosts: web
-  vars:
-          - letsencrypt_email: syberiayoubear@gmail.com
-          - domain_name: back.syb.devops.srwx.net
-  roles:
-          - nginx
-          - goapp

@@ -1,5 +1,5 @@
 ---
-- hosts: web
+- hosts: all
   gather_facts: no 
   tasks:
           - name: Installing python
